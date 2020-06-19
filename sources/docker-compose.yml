@@ -1,0 +1,24 @@
+version: '3.6'
+
+services:
+  webapplication:
+    image: webapplication
+    ports:
+      - "80"
+    build:
+      context: ./WebApplication
+      dockerfile: Dockerfile
+      args:
+        - skip_client_build=true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+  webapplication.angular.app:
+    image: webapplicationangularapp
+    build:
+      context: .
+      dockerfile: ./WebApplication/ClientApp/Dockerfile
+    ports:
+      - "4200:4200" 
+      - "49153:49153"
+    volumes:
+      - ./WebApplication/ClientApp:/app
