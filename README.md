@@ -1,0 +1,1 @@
+# dotnetcore-angular-docker-template
