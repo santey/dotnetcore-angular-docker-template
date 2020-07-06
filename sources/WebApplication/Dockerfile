@@ -17,7 +17,7 @@ RUN dotnet publish "WebApplication.csproj" -c Release -o /app/publish
 FROM node:12.18-alpine as node-build
 ARG skip_client_build=false 
 WORKDIR /src 
-COPY Vision/ClientApp .
+COPY WebApplication/ClientApp .
 RUN [[ ${skip_client_build} = true ]] && echo "Skipping npm install" || npm install 
 RUN [[ ${skip_client_build} = true ]] && mkdir dist || npm rebuild node-sass
 RUN [[ ${skip_client_build} = true ]] && mkdir dist || npm run build -- --prod
